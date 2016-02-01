@@ -1,7 +1,59 @@
-main.main
-   
-   section.wrapper.main__section
-      
-      h1.super-header.fade-in-up Milky Boilerplate
-      
-      p.main__strapline.fade-in-up Thanks for downloading
+main.app
+
+    section.app__info
+        
+        div.info__amount
+            h2 Rihanna has sent you a payment request for:
+            strong.amount $100,000.00
+            
+        div.info__message
+            h2 Message:
+            strong.message Bitch, you better have my money!
+    
+    section.app__payment-form
+    
+        header.payment-form__cards 
+            
+            ul
+                li
+                    include ../svg/github.svg
+                li
+                    include ../svg/soundcloud.svg
+                li
+                    include ../svg/vimeo.svg
+                li
+                    include ../svg/youtube.svg
+        
+        form.payment-form__form 
+            
+            div.form-group
+                
+                label(for="cardholder's name") Cardholder's name
+                input(type="text", name="cardholder's name")    
+            
+            div.form-group
+                
+                label(for="card number") Card Number
+                input(type="text", name="card number")    
+            
+            div.form-group
+                
+                div.expiry-date    
+                    
+                    label(for="card number") Expiry Date
+                    select(name="expiry Date")
+                        option(value="12") 12
+                    select(name="expiry Date")
+                        option(value="2019") 2019    
+                                                
+                div.cvc    
+                    label(for="cvc") cvc
+                    input(type="text", name="cvc")    
+            
+        button(type="button")
+            
+            span.initial-message Submit Payment
+            span.final-message Make Rihanna Happy
+            span arrow icon
+        
+    
