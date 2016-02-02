@@ -16,13 +16,13 @@ main.app
             
             ul
                 li
-                    include ../svg/github.svg
+                    include ../svg/visa.svg
                 li
-                    include ../svg/soundcloud.svg
+                    include ../svg/master.svg
                 li
-                    include ../svg/vimeo.svg
+                    include ../svg/discover.svg
                 li
-                    include ../svg/youtube.svg
+                    include ../svg/amex.svg
         
         form.payment-form__form 
             
@@ -36,13 +36,15 @@ main.app
                 label(for="card number") Card Number
                 input(type="text", name="card number")    
             
-            div.form-group
+            div.form-group.last-row
                 
                 div.expiry-date    
                     
                     label(for="card number") Expiry Date
+                    
                     select(name="expiry Date")
                         option(value="12") 12
+                    
                     select(name="expiry Date")
                         option(value="2019") 2019    
                                                 
@@ -50,10 +52,11 @@ main.app
                     label(for="cvc") cvc
                     input(type="text", name="cvc")    
             
-        button(type="button")
+        button(type="button").payment-form__submit
             
             span.initial-message Submit Payment
-            span.final-message Make Rihanna Happy
-            span arrow icon
+            span.right-arrow
+                include ../svg/right.svg
+                
         
     

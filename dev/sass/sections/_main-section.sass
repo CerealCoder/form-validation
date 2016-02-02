@@ -1,18 +1,170 @@
-.main
 
-   height: 100vh
-   background-color: $primary
+.container
+    overflow: hidden
+    background-color: $background
+    height: 100vh
+    display: flex
+    align-items: center
+    justify-content: center
 
-   display: flex
-   align-items: center
-   justify-content: center
+.app
+    width: 60em
+    height: 31em
+    border-radius: 9px
+    display: flex
+    overflow: hidden
+    box-shadow: 0px 0px 9px fade-out($quarternary, .4)
 
-   .main__section
-      color: $quarternary
+// LEFT SECTION
 
-   .main__strapline
-      text-align: center
-      margin-top: 35px
-      color: $tertiary
-      font-size: 23px
-      font-weight: 600
+.app__info
+    flex-basis: 33.333333%
+    background-image: url('/assets/img/riri.png')
+    background-repeat: no-repeat
+    background-position: center center
+    background-size: cover
+    color: #fff
+    position: relative
+    display: flex
+    flex-direction: column
+    justify-content: flex-end
+    padding: 2em 1em
+
+    &:after
+        content: ''
+        display: block
+        +position(absolute, 0 0 0 0)
+        z-index: 2
+        background-image: linear-gradient(fade-out(#fff, .9), fade-out(black, .07))
+
+.app__info > div
+
+    position: relative
+    z-index: 3
+
+    h2
+        font-size: 14px
+        color: $secondary
+        font-weight: normal
+        margin-bottom: .8em
+
+.info__amount::after
+    content: ''
+    display: block
+    margin: 20px 0
+    height: 3px
+    width: 50px
+    background-color: $tertiary
+
+.amount
+    font-size: 29px
+
+// RIGHT SECTION
+
+.app__payment-form
+
+    display: flex
+    flex-basis: 66.666666%
+    flex-direction: column
+    justify-content: space-between
+    background-color: #fff
+
+.payment-form__cards
+    display: flex
+    align-items: center
+    justify-content: center
+    height: 95px
+
+    ul li
+        display: inline-block
+        margin-right: 1.5em
+
+        &:last-child
+            margin: 0
+
+        svg
+            width: 50px
+            height: auto
+
+.payment-form__form
+    flex-grow: 1
+    padding: 1em 3em
+
+.form-group
+
+    margin-bottom: 1.5em
+
+    &:last-child
+        margin-bottom: 0
+
+    label
+
+        font-size: .9em
+        color: $secondary
+        font-weight: bold
+        text-transform: uppercase
+        display: block
+
+    input
+        border-radius: 3px
+        border: 1px solid $secondary
+        width: 100%
+        margin-top: 10px
+        padding: .7em 1.3em
+        text-transform: uppercase
+        color: $quarternary
+
+.last-row
+    display: flex
+
+.expiry-date
+    flex-grow: 1
+
+    label
+        margin-bottom: .81em
+
+    select
+        background: none
+        width: 48%
+        height: 46px
+        float: left
+        margin-right: 2%
+        border: 1px solid $secondary
+        color: $quarternary
+        text-align: center
+
+        &:focus
+            outline: 0
+
+.cvc
+    flex-basis: 25%
+
+// Submit
+
+.payment-form__submit
+    height: 70px
+    background-color: $tertiary
+    color: white
+    font-size: 1.1em
+    text-align: center
+    position: relative
+    transition: all .23s ease
+
+    &:hover
+        background-color: $secondary
+        color: $quarternary
+
+        .right-arrow svg
+            transform: translateY(2px)
+
+    .right-arrow
+
+        margin-left: 1em
+
+        svg
+            +size(15px)
+            transform: translateY(100px)
+            transition: all .23s ease
+
+            path
+                fill: $quarternary
