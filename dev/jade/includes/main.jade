@@ -29,28 +29,23 @@ main.app
             div.form-group
                 
                 label(for="cardholder's name") Cardholder's name
-                input(type="text", name="cardholder's name")    
+                input(type="text", name="cardholder's name", id="cardName")    
             
             div.form-group
                 
-                label(for="card number") Card Number
-                input(type="text", name="card number")    
+                label(for="email") Email
+                input(type="text", name="email", id="email")    
             
             div.form-group.last-row
                 
-                div.expiry-date    
-                    
-                    label(for="card number") Expiry Date
-                    
-                    select(name="expiry Date")
-                        option(value="12") 12
-                    
-                    select(name="expiry Date")
-                        option(value="2019") 2019    
+                div.card-number    
+                
+                    label(for="card number") Card Number
+                    input(type="text", name="card number", maxlength="19", id="cardNumber")                
                                                 
                 div.cvc    
                     label(for="cvc") cvc
-                    input(type="text", name="cvc")    
+                    input(type="text", name="cvc", maxlength="3", id="cvc")    
             
         button(type="button").payment-form__submit
             
