@@ -1,0 +1,53 @@
+// error message
+.error-message
+    position: absolute
+    bottom: 0
+    left: 50%
+    transform: translate(-50%, 100%)
+    background-color: $tertiary
+    color: $quarternary
+    width: 34em
+    text-align: center
+    padding: 2.5em 0
+    transition: all .23s ease
+
+    &.is-showing
+        transform: translate(-50%, 0)
+
+// sucess message
+
+.success-message
+    +position(fixed, 0 0 0 0)
+    z-index: 999
+    background-color: fade-out($quarternary, .2)
+    display: flex
+    align-items: center
+    justify-content: center
+    display: none
+
+    &.is-showing
+        display: flex
+        opacity: 1
+
+        .success-message__body
+            animation: fadeInUp .7s ease both
+
+.success-message__body
+    width: 40em
+    box-shadow: 0px 0px 9px $quarternary
+
+.message-title
+    background-color: $tertiary
+    text-align: center
+    padding: 1em 0
+    border-radius: 5px 5px 0 0
+    color: $quarternary
+
+
+.message-content
+    background-color: #fff
+    text-align: center
+    padding: 2em
+
+    p
+        margin-bottom: 1em

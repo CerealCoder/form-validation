@@ -28,8 +28,8 @@ main.app
             
             div.form-group
                 
-                label(for="cardholder's name") Cardholder's name
-                input(type="text", name="cardholder's name", id="cardName")    
+                label(for="name") Cardholder's name
+                input(type="text", name="name", id="cardName")    
             
             div.form-group
                 
@@ -53,5 +53,19 @@ main.app
             span.right-arrow
                 include ../svg/right.svg
                 
-        
+div.error-message
     
+    h3 Rihanna is upset. Please Enter a valid Email    
+
+div.success-message
+    
+    div.success-message__body
+        
+        header.message-title
+            
+            h3 Transaction complete !
+    
+        main.message-content
+            p The money was sucessfully sent. Rihanna is very happy
+            p Next time, make sure you pay on time, Bitch.
+        
