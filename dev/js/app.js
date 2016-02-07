@@ -1,7 +1,6 @@
 import * as form from './lib/form'
 
 
-
 form.userCardInput.addEventListener('blur', form.insertSpacesBetweenDigits, false)
 
 form.userCardInput.addEventListener('keydown', function(event) {

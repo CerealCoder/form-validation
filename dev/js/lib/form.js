@@ -8,27 +8,42 @@ export let overlaySuccess = document.querySelector('.success-message')
 
 
 
+
 // Local variables
 let allInputs = Array.prototype.slice.call(document.querySelectorAll('.form-group input'))
 let overlayError = document.querySelector('.error-message')
+let audioLoop = document.querySelector('.audio-loop')
+
+// Regex patterns
 let digitKeyCodes = [49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 37, 39, 8, 9]
 let emailPattern = /([a-zA-Z0-9\-\.])+@([a-zA-Z0-9\-\.])+([a-zA-Z.])+$/g
-
-let errorMessageShowing = false
 let fourDigitPattern = /(\d{4})/g
 let whitespacesPattern = /\s/g
 
 
+let errorMessageShowing = false
+let isFormValid = false
+let errors = []
 
-export let insertSpacesBetweenDigits = function () {
 
-    if (!userCardInput.value.match(whitespacesPattern)) {
-        userCardInput.value = userCardInput.value.replace(fourDigitPattern, "$1 ").trim()
-    }
 
+let createErrorMessage = function(errMessage) {
+
+    let paragraph = document.createElement("p")
+    paragraph.innerHTML = errMessage
+    return paragraph
 }
 
-let showError = function() {
+let showErrors = function() {
+
+    overlayError.innerHTML = ""
+
+    errors.forEach(function (errorMessage) {
+
+        overlayError.appendChild(errorMessage) // then we append the p tag to the body of the container
+
+    })
+
     overlayError.classList.add("is-showing")
     errorMessageShowing = true
 
@@ -39,25 +54,9 @@ let hideError = function() {
     errorMessageShowing = true
 }
 
-let highlightEmailInput = function() {
-    emailInput.classList.add("error")
-}
-
-let toneDownEmailInput = function() {
-    emailInput.classList.remove("error")
-}
-
 let showSuccessMessage = function() {
-
-
     overlaySuccess.classList.add("is-showing")
-
-}
-
-export let hideSuccessMessage = function() {
-
-    overlaySuccess.classList.remove("is-showing")
-
+    audioLoop.play()
 }
 
 let clearForm = function() {
@@ -70,28 +69,20 @@ let clearForm = function() {
 
 }
 
-export let validateForm = function() {
 
-    // If the user enters a valid email
+export let insertSpacesBetweenDigits = function () {
 
-    if (emailInput.value.match(emailPattern)) {
-
-        showSuccessMessage()
-        clearForm()
-
-        if (errorMessageShowing = true) {
-            hideError()
-            toneDownEmailInput()
-        }
+    if (!userCardInput.value.match(whitespacesPattern)) {
+        userCardInput.value = userCardInput.value.replace(fourDigitPattern, "$1 ").trim()
+        console.log(userCardInput.value.length);
     }
 
-    // If the user fails to enter a valid email
-    else {
-        showError()
-        highlightEmailInput()
-        emailInput.focus()
-    }
+}
 
+export let hideSuccessMessage = function() {
+    overlaySuccess.classList.remove("is-showing")
+    audioLoop.pause()
+    audioLoop.currentTime = 0
 }
 
 export let validateName = function(event) {
@@ -109,4 +100,55 @@ export let blockNonDigits = function(event) {
         event.preventDefault()
     }
 
+}
+
+export let validateForm = function() {
+
+        // Form valid is true
+        if (emailInput.value.match(emailPattern) && userCardInput.value.length === 19 && cvcInput.value.length === 3 && nameInput.value.length > 0) {
+
+            isFormValid = true
+
+            if (isFormValid == true && errorMessageShowing == true) {
+
+                hideError()
+                showSuccessMessage()
+                clearForm()
+
+            } else {
+                showSuccessMessage()
+                clearForm()
+            }
+
+        }
+
+        // If from valid is false
+        else {
+            // 1- User leaves the name field empty = "Please enter your name"
+
+            if (nameInput.value === "") {
+                errors.push(createErrorMessage("Name field should not be left empty"))
+            }
+
+            // 2- User Enters an invalid email address
+            if (!emailInput.value.match(emailPattern)) {
+                errors.push(createErrorMessage("Rihanna is upset, please provide a valid email address"))
+            }
+
+            // 3- User Enters a card number shorter than 19 characters
+            if (userCardInput.value.length != 19) {
+                errors.push(createErrorMessage("Please provide a valid card number"))
+                userCardInput.value = ""
+                userCardInput.focus()
+            }
+
+            if (cvcInput.value.length < 3) {
+                errors.push(createErrorMessage("CVC number must be 3 digits long"))
+            }
+
+            // show errors
+            showErrors()
+            errors = []
+
+        }
 }
