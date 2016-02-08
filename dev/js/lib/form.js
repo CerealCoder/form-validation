@@ -7,8 +7,6 @@ export let submitBtn = document.querySelector('.payment-form__submit')
 export let overlaySuccess = document.querySelector('.success-message')
 
 
-
-
 // Local variables
 let allInputs = Array.prototype.slice.call(document.querySelectorAll('.form-group input'))
 let overlayError = document.querySelector('.error-message')
@@ -16,7 +14,8 @@ let audioLoop = document.querySelector('.audio-loop')
 
 // Regex patterns
 let digitKeyCodes = [49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 37, 39, 8, 9]
-let emailPattern = /([a-zA-Z0-9\-\.])+@([a-zA-Z0-9\-\.])+([a-zA-Z.])+$/g
+let directionKeyCodes = [9, 20, 37, 39, 8]
+let emailPattern = /([a-zA-Z0-9\-\.])+@([a-zA-Z0-9\-\.])+\.[a-zA-Z.]+$/g
 let fourDigitPattern = /(\d{4})/g
 let whitespacesPattern = /\s/g
 
@@ -24,7 +23,6 @@ let whitespacesPattern = /\s/g
 let errorMessageShowing = false
 let isFormValid = false
 let errors = []
-
 
 
 let createErrorMessage = function(errMessage) {
@@ -70,11 +68,13 @@ let clearForm = function() {
 }
 
 
+
+
+
 export let insertSpacesBetweenDigits = function () {
 
     if (!userCardInput.value.match(whitespacesPattern)) {
         userCardInput.value = userCardInput.value.replace(fourDigitPattern, "$1 ").trim()
-        console.log(userCardInput.value.length);
     }
 
 }
@@ -86,11 +86,16 @@ export let hideSuccessMessage = function() {
 }
 
 export let validateName = function(event) {
+    let evt = event || window.event
     let pattern = /[a-zA-Z'\s -]/g
-    let keyPressed = event.keyCode
-    keyPressed = String.fromCharCode(keyPressed)
+    let keyPressed = evt.keyCode
+
+    if (directionKeyCodes.indexOf(keyPressed) === -1) {
+        keyPressed = String.fromCharCode(keyPressed)
+    }
+
     if (!keyPressed.match(pattern)) {
-        event.preventDefault()
+        evt.preventDefault()
     }
 }
 

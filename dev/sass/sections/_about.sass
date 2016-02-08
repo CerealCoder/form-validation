@@ -1,0 +1,45 @@
+.about
+    +position(absolute, 0 0 0 0)
+    z-index: 999
+    background-color: $quarternary
+    display: flex
+    align-items: center
+    justify-content: center
+    transform: translateX(-100%)
+    transition: all .23s ease
+
+.about__content
+    color: $tertiary
+    text-align: center
+
+    p
+        font-size: 1.4em
+        font-weight: 600
+        margin-bottom: 1em
+
+        a
+            background-color: #fff
+            color: $quarternary
+            padding: .1em .4em
+            transition: all .23s ease
+
+            &:hover
+
+                background-color: $tertiary
+
+// About button
+
+.toggle-about
+
+    position: fixed
+    z-index: 9990
+    top: 3em
+    right: 3em
+
+    svg
+
+        +size(50px)
+
+        path
+            fill: $quarternary
+            transition: all .23s ease

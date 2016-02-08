@@ -1,4 +1,5 @@
 import * as form from './lib/form'
+import {aboutBtn, toggleAboutSection} from './lib/animations'
 
 
 form.userCardInput.addEventListener('blur', form.insertSpacesBetweenDigits, false)
@@ -15,10 +16,12 @@ form.cvcInput.addEventListener('keydown', function(event) {
 
 }, false)
 
-form.nameInput.addEventListener('keypress', function(event) {
+form.nameInput.addEventListener('keydown', function(event) {
     form.validateName(event);
 })
 
 form.submitBtn.addEventListener('click', form.validateForm, false)
 
 form.overlaySuccess.addEventListener('click', form.hideSuccessMessage, false)
+
+aboutBtn.addEventListener("click", toggleAboutSection, false)
